@@ -38,8 +38,24 @@
     numberstyle=\tiny\color{gray},
     frame=single,
     breaklines=true,
-    tabsize=4
+    tabsize=2
 }
+\lstdefinestyle{pseudocode}{
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{red},
+    morekeywords={if, else, while, for, return, function, end, begin},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+	numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true,
+    tabsize=2
+}
+
 \lstset{}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 \newcolumntype{D}{>{\center\arraybackslash}X}
@@ -201,14 +217,17 @@
 	\[
 	F(x) = ((S_1[a] + S_2[b] \bmod 2^{32}) \oplus S_3[c]) + S_4[d] \bmod 2^{32}
 	\]
-
-	\begin{lstlisting}[style=codeStyle,language=python]
+	\begin{itemize}
+		\item $S_1, S_2, S_3, S_4$ sono le S-box dell'algoritmo.
+		\item $a$ byte più significativo di x.
+		\item $b$ = secondo byte più significativo di x
+		\item $c$ = secondo byte meno significativo di x
+		\item $d$ = byte meno significativo di x
+		
+	\end{itemize}
+	
+	\begin{lstlisting}[style=pseudocode]
 		function F(x):
-			a = byte piu significativo di x
-			b = secondo byte piu' significativo di x
-			c = secondo byte meno significativo di x
-			d = byte meno significativo di x
-			
 			result = ((S1[a] + S2[b] mod 2^32) xor S3[c]) + S4[d] mod 2^32
 			
 			return result

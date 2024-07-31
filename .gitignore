@@ -1,0 +1,7 @@
+# Ignore all files
+
+
+# Except for PDF, TEX, and BIB files in the src folder
+!/src/**/*.pdf
+!/src/**/*.tex
+!/src/**/*.bib

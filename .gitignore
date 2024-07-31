@@ -1,8 +1,5 @@
-# Ignore all files
+# Ignore all files except .tex and .pdf
+src/*
 
-
-# Except for PDF, TEX, and BIB files in the src folder
-!/src/*/*.pdf
-!/src/*/*.tex
-!/src/*/*.bib
-!/resources/*
+!*.tex
+!*.pdf

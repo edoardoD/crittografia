@@ -131,10 +131,7 @@
 	garantisce la riservatezza delle comunicazioni, assicura l'integrità dei dati e
 	favorisce un commercio elettronico sicuro. È uno strumento cruciale per
 	proteggere la nostra privacy e preservare la sicurezza dei nostri dati.
-	L'aspetto positivo di questa tecnica crittografica è la sicurezza: infatti,
-	anche se la chiave pubblica dovesse cadere in mani "sbagliate", l'assenza della
-	chiave privata garantisce la segretezza del messaggio. Inoltre, la crittografia
-	è un elemento fondamentale per la cybersecurity, capace di assicurare una
+	La crittografia	è un elemento fondamentale per la cybersecurity, capace di assicurare una
 	protezione efficace e duratura nel tempo dei sistemi e dei servizi a cui viene
 	applicata. 
 	\subsection*{Introduzione ai Password Manager} 
@@ -144,8 +141,12 @@
 	attraverso un’estensione del browser o una app, sia da un computer che da un
 	dispositivo mobile come tablet o smartphone. Questi strumenti consentono agli
 	utenti di sincronizzare le password tra vari dispositivi, e possono o meno
-	conservare le password e i dati anche sul dispositivo. 
-	\subsection*{Storia } 
+	conservare le password e i dati anche sul dispositivo.
+	Il concetto principe di un password manager è quello di accedere
+	ad una password unica, detta master password, che impastata
+	rappresenta la chiave privata del mio storage di password.
+
+	\section{Storia} 
 	La storia dei password manager è intrinsecamente legata all'evoluzione della
 	sicurezza informatica. Le password, come metodo di autenticazione, hanno radici
 	antiche, risalenti all'antica Grecia e utilizzate per proteggere segreti
@@ -160,10 +161,25 @@
 	Password Safe, nella sua versione originale, utilizzava l'algoritmo di
 	crittografia \textbf{Blowfish} per proteggere le password memorizzate.
 	Blowfish è un algoritmo di crittografia a blocchi simmetrico sviluppato da
-	Bruce Schneier nel 1993.
-
+	Bruce Schneier nel 1993.\\
+	All'avvio, l'applicazione chiedeva all'utente di creare un nuovo archivio di
+	password, che poteva essere salvato in qualsiasi posizione desiderata
+	dall'utente. Dopo aver creato l'archivio, l'applicazione chiedeva all'utente di
+	impostare una password principale. Questa password veniva utilizzata per
+	bloccare l'accesso all'archivio delle password. Era l'unica password che
+	l'utente doveva ricordare.\\
+	Una volta impostata la password principale, l'utente poteva iniziare a
+	memorizzare le proprie password e altre credenziali di accesso nell'archivio.
+	Quando l'utente aveva bisogno di accedere alle sue password, doveva aprire
+	l'applicazione Password Safe, inserire la password principale e quindi avrebbe
+	avuto accesso all'archivio delle password.\\
+	In questo modo, Password Safe offriva un modo sicuro per memorizzare tutte le
+	password in un unico luogo, proteggendole con una sola password principale.
+	Questo metodo di gestione delle password è ancora utilizzato nelle versioni più
+	recenti di Password Safe e in molti altri gestori di password
+	\subsection*{Punti chiave}
 	\begin{itemize}
-		\item \textbf{Crittografia Simmetrica:} Usa la stessa chiave per
+		\item \textbf{Crittografia Simmetrica:} Usa la stessa chiave\footnote{ la main password dell'utente} per
 		crittografare e decrittografare i dati.
 		\item \textbf{Lunghezza della Chiave Variabile:} Supporta chiavi di
 		lunghezza variabile, da 32 a 448 bit, rendendolo flessibile in base alle
@@ -173,11 +189,11 @@
 		\item \textbf{S-Box:} Utilizza strutture interne note come
 		S-box per realizzare la crittografia.
 	\end{itemize}
-
+	\newpage
 	\section{Funzionamento di Blowfish}
 
 	Blowfish utilizza un insieme di operazioni come sostituzioni e permutazioni,
-	gestite attraverso S-box e , per trasformare il testo in chiaro in
+	gestite attraverso S-box per trasformare il testo in chiaro in
 	testo cifrato. Ogni blocco di dati viene elaborato in 16 round di
 	crittografia.
 	\begin{figure}[H]
@@ -215,7 +231,7 @@
 	di 32 bit. Essa viene definita come segue:
 
 	\[
-	F(x) = ((S_1[a] + S_2[b] \bmod 2^{32}) \oplus S_3[c]) + S_4[d] \bmod 2^{32}
+		F(x) = ((S_1[a] + S_2[b] \bmod 2^{32}) \oplus S_3[c]) + S_4[d] \bmod 2^{32}
 	\]
 	\begin{itemize}
 		\item $S_1, S_2, S_3, S_4$ sono le S-box dell'algoritmo.
@@ -232,15 +248,92 @@
 			
 			return result
 	\end{lstlisting}
-	\section*{conclusioni}
+	\section*{conclusioni sul funzionamento di Blowfish}
 	in pratica l'algoritmo di crittografia Blowfish si differenzia
 	principalmente dal DES visto a lezione per la sua chiave variabile fino a
 	448 bit. \cite{blfh-lenth-key}
 
+	\section*{L'obsolescenza di Blowfish nella prima versione di
+	\textit{Password Safe}}
 
+		
+		Uno dei principali punti deboli di Blowfish risiede nella sua
+		progettazione con una rete di Feistel di 16 round descritta nei
+		paragrafi precedenti. Sebbene non vi siano attacchi pratici noti che
+		possano rompere Blowfish con meno di 16 round, la struttura fissa e il
+		numero limitato di round non garantiscono la stessa sicurezza di
+		algoritmi più moderni come l'AES (Advanced Encryption Standard), che
+		offre una configurazione più robusta e una gestione più sicura delle
+		chiavi. Inoltre, la progettazione di Blowfish non è ottimizzata per le
+		implementazioni hardware moderne, risultando vulnerabile a tecniche come
+		gli attacchi \textit{time-memory trade-off} (TMTO) \footnote{Per
+		maggiori informazioni sugli attacchi TMTO, si può consultare il seguente
+		link:
+		\url{https://en.wikipedia.org/wiki/Time/Memory/Data_Tradeoff_attack}} e
+		l'utilizzo di tabelle precomputate.
 
+		Con il tempo, la crittografia è diventata un campo in continua
+		evoluzione, \par con attacchi sempre più sofisticati come quelli
+		differenziali e lineari. Mentre Blowfish non è stato completamente
+		compromesso da tali attacchi, la sua mancanza di aggiornamenti e
+		adattamenti alle nuove minacce lo rende meno preferibile rispetto ad
+		altri algoritmi che hanno subito una revisione continua e miglioramenti.\\
 
+		Un'altra considerazione critica riguarda la derivazione\par delle chiavi. La
+		prima versione di \textit{Password Safe} potrebbe non aver implementato
+		meccanismi di derivazione delle chiavi robusti, come PBKDF2, bcrypt o
+		Argon2, che sono progettati per resistere agli attacchi a forza bruta
+		implementando salting e iterazioni multiple. Questo rende
+		particolarmente problematico l'uso di Blowfish in contesti moderni, dove
+		la sicurezza a lungo termine è essenziale.\\\\
+		Inoltre, il supporto per chiavi di lunghezza fino a 448 bit, sebbene
+		teoricamente sufficiente, non offre le stesse garanzie di sicurezza di
+		AES con chiavi di lunghezza 256 bit, che è considerato lo standard di
+		sicurezza per molte applicazioni critiche. La differenza non è solo
+		nella lunghezza delle chiavi, ma anche nella resistenza agli attacchi,
+		nella velocità di cifratura e nella versatilità in diversi ambienti
+		hardware.e l'utilizzo di tabelle precomputate.\\\\
+		Un'altra considerazione critica riguarda la derivazione delle chiavi. La prima
+		versione di \textit{Password Safe} potrebbe non aver implementato meccanismi di
+		derivazione delle chiavi robusti, come PBKDF2, bcrypt o Argon2, che sono
+		progettati per resistere agli attacchi a forza bruta implementando salting e
+		iterazioni multiple. Questo rende particolarmente problematico l'uso di Blowfish
+		in contesti moderni, dove la sicurezza a lungo termine è essenziale.\\
+		Inoltre, il supporto per chiavi di lunghezza fino a 448 bit, sebbene
+		teoricamente sufficiente, non offre le stesse garanzie di sicurezza di AES con
+		chiavi di lunghezza 256 bit, che è considerato lo standard di sicurezza per
+		molte applicazioni critiche. La differenza non è solo nella lunghezza delle
+		chiavi, ma anche nella resistenza agli attacchi, nella velocità di cifratura e
+		nella versatilità in diversi ambienti hardware.
 
+		\chapter{Bitwarden}
+		\section{Introduzione}
+		\sloppy Bitwarden è un password manager open source che offre una soluzione sicura
+		per memorizzare e gestire le password. È disponibile su diverse piattaforme,
+		tra cui desktop, web, mobile e browser. Bitwarden offre funzionalità di
+		sincronizzazione, condivisione e generazione di password, nonché un'interfaccia
+		intuitiva e facile da usare.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{wardenEnviroment.png}
+			\caption{l'enviroment di Bitwarden}
+			\label{fig:eviroment}
+		\end{figure}
+
+		\section{missione del progetto}
+		Bitwarden è un progetto open source che si pone l'obiettivo di \\
+		fornire
+		una soluzione sicura e affidabile per la gestione delle password. La
+		missione di Bitwarden è quella di proteggere la privacy e la sicurezza
+		degli utenti, offrendo un servizio gratuito e open source che garantisce
+		la riservatezza dei dati e la sicurezza delle informazioni personali.
+		Rendendo il suo codice \href{https://github.com/bitwarden}{sorgente}
+		pubblico nel 2016, Bitwarden ha dimostrato il suo impegno per la
+		trasparenza e la sicurezza, consentendo agli utenti di verificare la
+		qualità del software e la sicurezza delle loro password.\\
+		
+		
 
 
 	\newpage

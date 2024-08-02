@@ -1,5 +1,5 @@
 \documentclass[a4paper,12pt]{report}
-
+\usepackage{amsmath}
 \usepackage{alltt, fancyvrb, url}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
@@ -333,8 +333,237 @@
 		trasparenza e la sicurezza, consentendo agli utenti di verificare la
 		qualità del software e la sicurezza delle loro password.\\
 		
-		
+		Come \textit{password safe}, Bitwarden utilizza la master password
+		dell'utente per crittografare e proteggere le password memorizzate,
+		garantendo che solo l'utente possa accedere ai propri dati. Ma la domanda
+		a cui vogliamo rispondere con questa ricerca è: come un software moderno
+		opera in un mondo informatico multi device garantendo la massima sicurezza
+		quindi sia in locale ma anche in cloud?
+		\chapter{Registrazione di un utente su Bitwarden}
 
+		Il processo di hashing della master password in un sistema di gestione
+		delle password come Bitwarden segue diversi step che servono a generare 
+		una chiave derivata sicura per proteggere le password memorizzate. Questo
+		processo permette di non rendere noto il valore della master password
+		nemmeno al server storage di Bitwarden.\cite{login-encryption}\\
+		Le fasi più critiche e fondamentali verranno prese in esame inseguito.
+		\section{generazione della Master Key}
+		\sloppy
+		La master password dell'utente viene utilizzata per generare una chiave
+		segreta, chiamata \textit{master key}, che verrà utilizzata per cifrare
+		e decifrare i dati memorizzati. La master key viene derivata dalla
+		combinazione della password principale dell'utente e dell'indirizzo
+		email tramite la funzione di derivazione delle chiavi PBKDF2. Questo
+		processo utilizza 600.000 iterazioni di HMAC-SHA256, producendo una
+		chiave di 256 bit.\\
+		\begin{lstlisting}[style=pseudocode]
+			function generate_master_key(password, email):
+				derived_key = PBKDF2(password, email, 600000, 256)
+				master_key = derived_key[0:32]
+				
+				return master_key
+		\end{lstlisting}
+		\subsection{la funzione PBKDF2}
+		PBKDF2 (Password-Based Key Derivation Function 2) è un meccanismo di
+		derivazione di chiavi basato su password ampiamente utilizzato per
+		aumentare la sicurezza delle password memorizzate. Il processo inizia
+		con l'aggiunta di un "sale", tipicamente una stringa casuale, alla
+		password dell'utente. Questo aiuta a proteggere contro gli attacchi di
+		dizionario e rainbow table, rendendo ogni hash unico anche se la
+		password originale è comune. Successivamente, il valore combinato di
+		password e sale viene passato attraverso un algoritmo di hash
+		crittografico, in questo caso \textit{HMAC-SHA-256}. HMAC sta per Hash-based
+		Message Authentication Code, che è un tipo di funzione di hash che
+		fornisce sia l'integrità dei dati che l'autenticazione del messaggio.
+		SHA-256 è parte della famiglia di algoritmi Secure Hash Algorithm e
+		produce un hash di lunghezza fissa di 256 bit.\cite{PBKDF2}\\\\
+		Dopo il primo hashing, il valore ottenuto viene nuovamente salato e hashato
+		molteplici volte. Il numero di iterazioni, \textit{streaching-function}\cite{PBKDF2-streaching-function}, è
+		configurabile e serve a rendere il processo di derivazione della chiave
+		intenzionalmente lento. Questo rallentamento è critico per la sicurezza, poiché
+		rende gli attacchi di forza bruta e di ricerca esaustiva molto più dispendiosi
+		in termini di tempo e risorse computazionali. Con ogni iterazione, l'hash
+		diventa più resistente agli attacchi, aumentando così la sicurezza della chiave
+		derivata.\\\\
+		La chiave finale ottenuta dopo l'ultima iterazione è la chiave principale, che
+		non è altro che un altro hash che sarà utilizzato per ulteriori operazioni
+		crittografiche, come l'hash della password principale. Quest'ultimo è il valore
+		che viene effettivamente utilizzato per verificare l'identità dell'utente
+		durante il processo di autenticazione. Ogni volta che l'utente inserisce la sua
+		password, il sistema ripete il processo di derivazione della chiave e confronta
+		l'hash risultante con quello memorizzato. Se corrispondono, l'accesso è
+		concesso.
+		\begin{lstlisting}[style=pseudocode]
+			function PBKDF2(password, salt, iterations, key_length):
+				key = password
+				for i = 1 to iterations:
+					key = HMAC-SHA256(key, salt)
+				return key[0:key_length]
+		\end{lstlisting}
+		\subsection{HMAC-SHA-256}
+		mentre a lezione abbiamo studiato e visto il funzionamento di SHA-256, mi sento 
+		di approfondire il funzionamento di HMAC-SHA-256.\\
+		HMAC sta per Hash-based Message Authentication Code, in questo caso specifico
+		la funzione di hash scelta è quella vista a lezione, ora vediamo come la opera 
+		per rendere sicura l'informazione.\cite{HMAC}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{HMAC-structure.png}
+			\caption{funzionamento di HMAC-SHA-256}
+			\label{fig:hmac-sha256}
+		\end{figure}
+		\begin{enumerate}
+			\item Aggiungere zeri all'inizio di K per creare una stringa di bit $b$
+			chiamata $K^+$.
+			\item Fare lo XOR tra $K^+$ e \textit{ipad} per produrre il blocco di bit
+			$b$ $S_i$.
+			\item Aggiungere $M$ a $S_i$.
+			\item Applicare l'algoritmo di hash $H$ al flusso generato nel passaggio 3.
+			\item Fare lo XOR tra $K^+$ e \textit{opad} per produrre il blocco di bit
+			$b$ $S_0$.
+			\item Aggiungere il risultato dell'hash del passaggio 4 a $S_0$.
+			\item Applicare l'algoritmo di hash $H$ al flusso generato nel passaggio 6 e
+			produrre il risultato finale.
+		\end{enumerate}
+
+		\section{Stretched Master Key}
+		La master key risultante viene
+		ulteriormente elaborata tramite l'algoritmo HKDF con SHA-256, che include una
+		fase di espansione delle chiavi, per produrre una chiave estesa di 512 bit.
+		Questa chiave estesa è utilizzata per cifrare i dati memorizzati nella
+		cassaforte digitale dell'utente, compresi i vari segreti e le chiavi di
+		cifratura.
+		\begin{lstlisting}[style=pseudocode]
+			function stretch_master_key(master_key):
+				stretched_key = HKDF(master_key, 512)
+
+				return stretched_key
+		\end{lstlisting}
+		\subsection{HKDF}
+			HKDF (HMAC-based Key Derivation Function) è un algoritmo di derivazione delle
+			chiavi basato su HMAC che consente di generare chiavi di lunghezza variabile a
+			partire da una chiave segreta. 
+			
+			HKDF è un meccanismo per derivare chiavi crittografiche sicure da un
+			materiale di chiave iniziale (Initial Key Material, IKM). L'algoritmo è
+			suddiviso in due fasi principali: estrazione ed espansione.
+
+		\subsection*{Fase 1: Estrazione}
+
+		\textbf{Scopo}: Estrarre una chiave pseudocasuale (PRK) dal materiale di
+		chiave iniziale.\\
+		\textbf{Procedura}: Si utilizza una funzione HMAC con un hash
+		crittografico (ad esempio, SHA-256). Il sale (`salt`) è un valore
+		opzionale; se non fornito, si usa una stringa di zeri della lunghezza
+		dell'hash.
+
+		\[
+		\text{PRK} = \text{HMAC}_\text{hash}(\text{salt}, \text{IKM})
+		\]
+
+		\subsection*{Fase 2: Espansione}
+
+		\textbf{Scopo}: Derivare una o più chiavi di output (Output Key
+		Material, OKM) dalla PRK.\\
+		\textbf{Procedura}: Utilizzando nuovamente HMAC, la PRK è impiegata come
+		chiave per l'HMAC e un contesto (`info`) come input. L'output è una
+		concatenazione di più blocchi HMAC.
+
+		\[
+		T(0) = \emptyset
+		\]
+
+		\[
+		T(1) = \text{HMAC}_\text{hash}(\text{PRK}, T(0) \| \text{info} \| 0x01)
+		\]
+
+		\[
+		T(2) = \text{HMAC}_\text{hash}(\text{PRK}, T(1) \| \text{info} \| 0x02)
+		\]
+
+		\[
+		\ldots
+		\]
+
+		\[
+		T(n) = \text{HMAC}_\text{hash}(\text{PRK}, T(n-1) \| \text{info} \| n)
+		\]
+
+		\[
+		\text{OKM} = T(1) \| T(2) \| \ldots \| T(n)
+		\]
+
+		\textbf{Dove}:
+		\begin{itemize}
+			\item \(\| \) denota la concatenazione.
+			\item \( n \) è il numero di blocchi necessari per ottenere la
+			lunghezza desiderata dell'OKM.
+		\end{itemize}
+
+		\subsection*{Caratteristiche Principali}
+		\begin{itemize}
+			\item \textbf{Sicurezza}: HKDF è progettato per essere resistente a
+			vari attacchi, mantenendo segrete le chiavi derivate anche se una di
+			esse viene compromessa.
+			\item \textbf{Modularità}: Può utilizzare diverse funzioni hash,
+			adattandosi a diverse esigenze di sicurezza.
+			\item \textbf{Efficienza}: È efficiente in termini computazionali e
+			di memoria.
+		\end{itemize}
+
+
+
+
+		\subsection*{1. Generazione del Salt}
+		Un valore casuale, chiamato \textit{salt}, viene generato per ogni utente:
+		\[
+		\text{salt} = \text{random\_bytes}(n)
+		\]
+		dove \( n \) è la lunghezza del salt in byte.
+
+		\subsection*{2. Concatenazione della Password e del Salt}
+		La master password dell'utente \( P \) viene concatenata con il salt:
+		\[
+		\text{input} = P \| \text{salt}
+		\]
+		dove \( \| \) rappresenta l'operazione di concatenazione.
+
+		\subsection*{3. Hashing}
+		L'input concatenato viene passato attraverso una funzione di hashing sicura, come SHA-256:
+		\[
+		\text{hash} = \text{SHA-256}(\text{input})
+		\]
+
+		\subsection*{4. Iterazione (PBKDF2)}
+		Per aumentare la sicurezza, l'hash viene iterato utilizzando PBKDF2 (Password-Based Key Derivation Function 2):
+		\[
+		\text{derived\_key} = \text{PBKDF2}(\text{hash}, \text{salt}, \text{iterations}, \text{key\_length})
+		\]
+		dove \textit{iterations} è il numero di iterazioni e \textit{key\_length} è la lunghezza della chiave derivata.
+
+		\subsection*{5. Memorizzazione}
+		Il risultato finale, \textit{derived\_key}, insieme al salt, viene memorizzato nel database:
+		\[
+		\text{stored\_value} = \{\text{salt}, \text{derived\_key}\}
+		\]
+
+		Questo processo garantisce che anche se due utenti hanno la stessa master password, i valori hash memorizzati saranno diversi grazie all'uso del salt. Inoltre, l'uso di PBKDF2 rende l'attacco di forza bruta molto più difficile.
+		ecco lo pseudocode completo dell'operazione:
+		\begin{lstlisting}[style=pseudocode]
+			function hash_master_password(password, salt):
+				input = password || salt
+				hash = SHA-256(input)
+				derived_key = PBKDF2(hash, salt, iterations, key_length)
+				stored_value = {salt, derived_key}
+				
+				return stored_value
+		\end{lstlisting}
+		\subsection*{PBKDF2 o Argon2?}
+		Dalla versione 2023.2.0 di Bitwarden, è stata inserita la possibilità
+		di scegliere tra PBKDF2 e Argon2 come algoritmo di derivazione delle
+		chiavi per l'hashing della master password. Argon2 è un algoritmo di
+		derivazione delle chiavi. Vincitore del concorso Password Hashing
+		Competition (PHC) nel 2015, Argon2 è considerato uno degli algoritmi
 
 	\newpage
 	\bibliography{refs}

@@ -133,7 +133,33 @@
 		proteggere la nostra privacy e preservare la sicurezza dei nostri dati.
 		La crittografia	è un elemento fondamentale per la cybersecurity, capace di assicurare una
 		protezione efficace e duratura nel tempo dei sistemi e dei servizi a cui viene
-		applicata. 
+		applicata.
+		\section{concetti chiave per questa ricerca}
+			bisogna tener presente che ci sono 2 concetti che sono fondamentali 
+			su cui si basano tutti gli algoritmi di questa ricerca.\\
+			Ogni algoritmo visto nelle pagine seguenti implementa questi
+			2 concetti in modo diverso, ma il principio rimane lo stesso.
+
+			\subsection{Confusione}
+			Confusione si riferisce alla capacità di nascondere la relazione tra
+			il testo cifrato e la chiave crittografica. L'obiettivo è rendere
+			complicato per un attaccante dedurre la chiave o il testo in chiaro
+			basandosi sul testo cifrato. Questo principio si realizza attraverso
+			operazioni non lineari e sostituzioni complesse, come le tabelle
+			S-Box utilizzate in algoritmi simmetrici come AES. Queste
+			trasformazioni rendono non prevedibile la modifica del testo cifrato
+			in risposta a cambiamenti nei dati o nella chiave.
+
+			\subsection{Diffusione}
+			Diffusione significa che una modifica in un singolo bit del testo in
+			chiaro dovrebbe influenzare molti bit nel testo cifrato. Questo
+			rende difficile per un attaccante capire quale parte del testo
+			cifrato corrisponde a quale parte del testo in chiaro. La diffusione
+			si ottiene tipicamente attraverso operazioni che mescolano i dati,
+			come le trasformazioni lineari e le permutazioni. Per esempio, nel
+			DES e nell'AES, operazioni come "MixColumns" e "ShiftRows"
+			diffondono i dati su più byte, incrementando così la sicurezza.
+
 		\subsection*{Introduzione ai Password Manager} 
 		Un password manager è un sistema di
 		sicurezza informatica, un programma che permette di creare password uniche per
@@ -146,7 +172,7 @@
 		ad una password unica, detta master password, che impastata
 		rappresenta la chiave privata del mio storage di password.
 
-		\section{Storia} 
+	\chapter{Storia} 
 		La storia dei password manager è intrinsecamente legata all'evoluzione della
 		sicurezza informatica. Le password, come metodo di autenticazione, hanno radici
 		antiche, risalenti all'antica Grecia e utilizzate per proteggere segreti
@@ -635,32 +661,81 @@
 			 abbiamo già visto come funziona PBKDF2, una volta fatto il primo accesso
 			 puoi decidere quale algoritmo utilizzare fra quelli precedentemente presentati
 			\subsection{Protected Symmetric Key}
-				generata con un algoritmo AES-256 che ora spieghiamo nel dettaglio 
-				\subsubsection{AES-256}
-				Advanced Encryption Standard (AES) è un algoritmo di crittografia a blocchi
-				simmetrico che utilizza chiavi di 128, 192 o 256 bit. È uno degli algoritmi
-				di crittografia più utilizzati al mondo, utilizzato per proteggere dati
-				sensibili in applicazioni come la crittografia dei dati, la sicurezza delle
-				connessioni Internet e la protezione delle informazioni personali.\\
-				Accetta 3 argomenti: il testo in chiaro, la chiave e il vettore di
-				inizializzazione (IV). Il testo in chiaro e la chiave devono essere della
-				stessa lunghezza, mentre l'IV è un vettore di byte pseudocasuale che viene utilizzato
-				per inizializzare lo stato interno dell'algoritmo.\\
+				generata con un algoritmo AES-256 che ora spieghiamo nel dettaglio:\\
+				L'AES-256 (Advanced Encryption Standard con una chiave di 256
+				bit)\\ è un algoritmo di cifratura a blocchi che utilizza una chiave
+				simmetrica per cifrare e decifrare i dati.
+				\newpage
+				\subsection{Come applica Confusine AES-256? }
+				\subsection*{SubBytes e S-Box}
 
-				scriviamo i punti principali del funzonamento di AES-256:
 				\begin{itemize}
-					\item \textbf{S-Box}: Utilizza una tabella di sostituzione non lineare
-					per confondere i dati durante la crittografia.
-					\item \textbf{ShiftRows}: Permuta i byte all'interno di ciascuna riga
-					della matrice di stato.
-					\item \textbf{MixColumns}: Combina i byte all'interno di ciascuna
-					colonna della matrice di stato.
-					\item \textbf{AddRoundKey}: Aggiunge la chiave di round alla matrice di
-					stato.
+					\item \textbf{S-Box (Substitution Box)}: L'S-Box è una tabella
+					di sostituzione che mappa ogni byte del blocco di stato a un
+					altro byte. Questa mappatura non è lineare, il che significa che
+					piccoli cambiamenti nel testo in chiaro o nella chiave possono
+					causare cambiamenti significativi nel testo cifrato. L'S-Box di
+					AES è progettata per resistere ad attacchi di crittoanalisi
+					differenziale e lineare.
+					\item \textbf{SubBytes}: In questa operazione, ogni byte del
+					blocco di stato (una matrice 4·4 di byte) viene sostituito con
+					il byte corrispondente nell'S-Box. Questa operazione introduce
+					confusione, in quanto la sostituzione non segue un modello
+					prevedibile e aumenta la complessità dell'analisi del testo
+					cifrato.
+					\begin{figure}[H]
+						\centering
+						\includegraphics[width=1.1\textwidth]{sbox.png}
+						\caption{spostamento sulla matrice 16·15 di S-Box, nelle varianti con meno bit di AES si utilizzano matrici più piccole}
+					\end{figure}
+					
+				\end{itemize}
+				\newpage
+				\subsection{come applica Diffusione?}
+				\subsection*{ShiftRows}
+
+				\begin{itemize}
+				\item \textbf{ShiftRows} è un'operazione in cui i byte nelle
+				righe della matrice di stato sono ciclicamente spostati a
+				sinistra. La prima riga rimane inalterata, la seconda riga è
+				spostata di una posizione, la terza di due posizioni e la quarta
+				di tre posizioni. Questo spostamento crea una diffusione tra i
+				byte nelle diverse colonne della matrice.
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.9\textwidth]{shiftRow.png}
+					\caption{rappresentazione matriciale di SubBytes}
+				\end{figure}
 				\end{itemize}
 
-			
-			
+				\subsection*{MixColumns}
+
+				\begin{itemize}
+				\item è un'operazione che applica una
+				trasformazione lineare ai byte di ogni colonna della matrice di
+				stato. Ogni colonna è trattata come un vettore di quattro byte e
+				viene moltiplicata, in un campo di Galois (matematica finita),
+				per una matrice fissa, che è invertibile. Questa operazione
+				mescola i byte all'interno di ciascuna colonna, assicurando che
+				i cambiamenti in un singolo byte si diffondano a tutti gli altri
+				byte della colonna.
+				\end{itemize}
+				\newpage
+				\subsection*{AddRoundKey}
+				Anche se l'operazione di \textbf{AddRoundKey} non contribuisce
+				direttamente alla confusione e alla diffusione, è essenziale per
+				la sicurezza dell'algoritmo. In questa fase, una chiave di round
+				derivata dalla chiave principale viene aggiunta al blocco di
+				stato tramite l'operazione di XOR. Ogni round ha una chiave
+				diversa, derivata attraverso un processo noto come "expansion
+				key". Questa aggiunta introduce un nuovo livello di sicurezza,
+				rendendo ogni round unico.
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.9\textwidth]{roundKey.png}
+					\caption{rappresentazione matriciale di round key}
+				\end{figure}
+							
 			\chapter{accesso di Bob}
 				\textbf{Contesto}: Bob è un utente di Bitwarden e vuole accedere al suo account utilizzando la sua \textit{email} e la sua \textit{master password}.
 
@@ -732,7 +807,18 @@
 				\end{enumerate}
 
 				Questo processo garantisce che solo chi conosce la master password corretta possa accedere ai dati criptati, proteggendo l'utente da accessi non autorizzati.
-
+			\chapter{Conclusioni}
+			Personalmente, Dopo questa ricerca mi sento di dire che Bitwarden è un
+			software molto sicuro e affidabile per la gestione delle password.
+			Mi piace pensare che la crittografia sia utilizzata per scopi positivi
+			e Bitwarden è la migliore offerta open source per la gestione delle
+			proprie password.\\
+			Ho apprezzato talmente tanto la complessità e la capacità degli ingegneri
+			nel saper architettare un meccanismo crittografico e talmente fine da non 
+			aver paura di ricervere attacchi nel server cloud, poichè anche se venissero 
+			rubati i dati, sarebbero inutilizzabili senza la master password.\\ Per questi 
+			motivi e per lo studio fornito sulla complessità crittografica che ho deciso 
+			di aprire un accounti Bitwarden per gestire, da qui in poi, i miei account personali \\
 			\bibliography{refs}
 			\renewcommand{\bibsection}{}
 			

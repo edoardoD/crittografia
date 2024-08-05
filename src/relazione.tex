@@ -23,7 +23,7 @@
 \usepackage{ulem}
 \usepackage{float}
 \usepackage{tocloft}
-
+\usepackage{lmodern}
 \usepackage{natbib}
 \bibliographystyle{plain}
 
@@ -117,199 +117,200 @@
 	\setcounter{page}{0}
 
 	\chapter{Introduzione}
-	\section{Scopo del Documento}
-	L'idea della ricerca nasce poichè confrontandomi con amici e colleghi, ho notato
-	che molti di loro studiavano il campo della crittografia da un punto di vista
-	dei malware e dei ransomware, ma non da un punto di vista positivo. Questo
-	documento ha lo scopo di fornire una panoramica generale della crittografia e
-	delle sue applicazioni positive, con particolare attenzione ai password manager.
-	\section{L'Uso Positivo della Crittografia} 
-	La crittografia, un campo di studio che si
-	occupa della protezione delle informazioni attraverso l'uso di codici, ha un
-	ruolo fondamentale nel mondo digitale di oggi. Attraverso l'utilizzo di
-	complessi algoritmi matematici, la crittografia protegge i dati sensibili,
-	garantisce la riservatezza delle comunicazioni, assicura l'integrità dei dati e
-	favorisce un commercio elettronico sicuro. È uno strumento cruciale per
-	proteggere la nostra privacy e preservare la sicurezza dei nostri dati.
-	La crittografia	è un elemento fondamentale per la cybersecurity, capace di assicurare una
-	protezione efficace e duratura nel tempo dei sistemi e dei servizi a cui viene
-	applicata. 
-	\subsection*{Introduzione ai Password Manager} 
-	Un password manager è un sistema di
-	sicurezza informatica, un programma che permette di creare password uniche per
-	ogni singolo account, conservarle in un luogo sicuro e accedere ad esse
-	attraverso un’estensione del browser o una app, sia da un computer che da un
-	dispositivo mobile come tablet o smartphone. Questi strumenti consentono agli
-	utenti di sincronizzare le password tra vari dispositivi, e possono o meno
-	conservare le password e i dati anche sul dispositivo.
-	Il concetto principe di un password manager è quello di accedere
-	ad una password unica, detta master password, che impastata
-	rappresenta la chiave privata del mio storage di password.
+		\section{Scopo del Documento}
+		L'idea della ricerca nasce poichè confrontandomi con amici e colleghi, ho notato
+		che molti di loro studiavano il campo della crittografia da un punto di vista
+		dei malware e dei ransomware, ma non da un punto di vista positivo. Questo
+		documento ha lo scopo di fornire una panoramica generale della crittografia e
+		delle sue applicazioni positive, con particolare attenzione ai password manager.
+		\section{L'Uso Positivo della Crittografia} 
+		La crittografia, un campo di studio che si
+		occupa della protezione delle informazioni attraverso l'uso di codici, ha un
+		ruolo fondamentale nel mondo digitale di oggi. Attraverso l'utilizzo di
+		complessi algoritmi matematici, la crittografia protegge i dati sensibili,
+		garantisce la riservatezza delle comunicazioni, assicura l'integrità dei dati e
+		favorisce un commercio elettronico sicuro. È uno strumento cruciale per
+		proteggere la nostra privacy e preservare la sicurezza dei nostri dati.
+		La crittografia	è un elemento fondamentale per la cybersecurity, capace di assicurare una
+		protezione efficace e duratura nel tempo dei sistemi e dei servizi a cui viene
+		applicata. 
+		\subsection*{Introduzione ai Password Manager} 
+		Un password manager è un sistema di
+		sicurezza informatica, un programma che permette di creare password uniche per
+		ogni singolo account, conservarle in un luogo sicuro e accedere ad esse
+		attraverso un’estensione del browser o una app, sia da un computer che da un
+		dispositivo mobile come tablet o smartphone. Questi strumenti consentono agli
+		utenti di sincronizzare le password tra vari dispositivi, e possono o meno
+		conservare le password e i dati anche sul dispositivo.
+		Il concetto principe di un password manager è quello di accedere
+		ad una password unica, detta master password, che impastata
+		rappresenta la chiave privata del mio storage di password.
 
-	\section{Storia} 
-	La storia dei password manager è intrinsecamente legata all'evoluzione della
-	sicurezza informatica. Le password, come metodo di autenticazione, hanno radici
-	antiche, risalenti all'antica Grecia e utilizzate per proteggere segreti
-	militari durante la Seconda Guerra Mondiale. Con l'avvento dei computer negli
-	anni '60, le password hanno iniziato a diventare parte della vita quotidiana.
+		\section{Storia} 
+		La storia dei password manager è intrinsecamente legata all'evoluzione della
+		sicurezza informatica. Le password, come metodo di autenticazione, hanno radici
+		antiche, risalenti all'antica Grecia e utilizzate per proteggere segreti
+		militari durante la Seconda Guerra Mondiale. Con l'avvento dei computer negli
+		anni '60, le password hanno iniziato a diventare parte della vita quotidiana.
 
-	Il primo password manager della storia è stato sviluppato nel 1990 da Mark
-	Thompson \cite{password-manager-hystory} e si chiama "password Safe" e 
-	fu introdotto come software utility per windows 95. 
+		Il primo password manager della storia è stato sviluppato nel 1990 da Mark
+		Thompson \cite{password-manager-hystory} e si chiama "password Safe" e 
+		fu introdotto come software utility per windows 95. 
 
-	\section{Passwword Save e l'algoritmo di Blowfish}
-	Password Safe, nella sua versione originale, utilizzava l'algoritmo di
-	crittografia \textbf{Blowfish} per proteggere le password memorizzate.
-	Blowfish è un algoritmo di crittografia a blocchi simmetrico sviluppato da
-	Bruce Schneier nel 1993.\\
-	All'avvio, l'applicazione chiedeva all'utente di creare un nuovo archivio di
-	password, che poteva essere salvato in qualsiasi posizione desiderata
-	dall'utente. Dopo aver creato l'archivio, l'applicazione chiedeva all'utente di
-	impostare una password principale. Questa password veniva utilizzata per
-	bloccare l'accesso all'archivio delle password. Era l'unica password che
-	l'utente doveva ricordare.\\
-	Una volta impostata la password principale, l'utente poteva iniziare a
-	memorizzare le proprie password e altre credenziali di accesso nell'archivio.
-	Quando l'utente aveva bisogno di accedere alle sue password, doveva aprire
-	l'applicazione Password Safe, inserire la password principale e quindi avrebbe
-	avuto accesso all'archivio delle password.\\
-	In questo modo, Password Safe offriva un modo sicuro per memorizzare tutte le
-	password in un unico luogo, proteggendole con una sola password principale.
-	Questo metodo di gestione delle password è ancora utilizzato nelle versioni più
-	recenti di Password Safe e in molti altri gestori di password
-	\subsection*{Punti chiave}
-	\begin{itemize}
-		\item \textbf{Crittografia Simmetrica:} Usa la stessa chiave\footnote{ la main password dell'utente} per
-		crittografare e decrittografare i dati.
-		\item \textbf{Lunghezza della Chiave Variabile:} Supporta chiavi di
-		lunghezza variabile, da 32 a 448 bit, rendendolo flessibile in base alle
-		esigenze di sicurezza.
-		\item \textbf{Dimensione del Blocco:} Opera su blocchi di dati di 64
-		bit.
-		\item \textbf{S-Box:} Utilizza strutture interne note come
-		S-box per realizzare la crittografia.
-	\end{itemize}
-	\newpage
-	\section{Funzionamento di Blowfish}
+		\section{Passwword Save e l'algoritmo di Blowfish}
+		Password Safe, nella sua versione originale, utilizzava l'algoritmo di
+		crittografia \textbf{Blowfish} per proteggere le password memorizzate.
+		Blowfish è un algoritmo di crittografia a blocchi simmetrico sviluppato da
+		Bruce Schneier nel 1993.\\
+		All'avvio, l'applicazione chiedeva all'utente di creare un nuovo archivio di
+		password, che poteva essere salvato in qualsiasi posizione desiderata
+		dall'utente. Dopo aver creato l'archivio, l'applicazione chiedeva all'utente di
+		impostare una password principale. Questa password veniva utilizzata per
+		bloccare l'accesso all'archivio delle password. Era l'unica password che
+		l'utente doveva ricordare.\\
+		Una volta impostata la password principale, l'utente poteva iniziare a
+		memorizzare le proprie password e altre credenziali di accesso nell'archivio.
+		Quando l'utente aveva bisogno di accedere alle sue password, doveva aprire
+		l'applicazione Password Safe, inserire la password principale e quindi avrebbe
+		avuto accesso all'archivio delle password.\\
+		In questo modo, Password Safe offriva un modo sicuro per memorizzare tutte le
+		password in un unico luogo, proteggendole con una sola password principale.
+		Questo metodo di gestione delle password è ancora utilizzato nelle versioni più
+		recenti di Password Safe e in molti altri gestori di password
+		\subsection*{Punti chiave}
+		\begin{itemize}
+			\item \textbf{Crittografia Simmetrica:} Usa la stessa chiave\footnote{ la main password dell'utente} per
+			crittografare e decrittografare i dati.
+			\item \textbf{Lunghezza della Chiave Variabile:} Supporta chiavi di
+			lunghezza variabile, da 32 a 448 bit, rendendolo flessibile in base alle
+			esigenze di sicurezza.
+			\item \textbf{Dimensione del Blocco:} Opera su blocchi di dati di 64
+			bit.
+			\item \textbf{S-Box:} Utilizza strutture interne note come
+			S-box per realizzare la crittografia.
+		\end{itemize}
+		\newpage
+		\section{Funzionamento di Blowfish}
 
-	Blowfish utilizza un insieme di operazioni come sostituzioni e permutazioni,
-	gestite attraverso S-box per trasformare il testo in chiaro in
-	testo cifrato. Ogni blocco di dati viene elaborato in 16 round di
-	crittografia.
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{encription.jpg}
-		\caption{grafico che cattura il processo di crittografia dell'algoritmo \cite{blowfish-algorithm}}
-		\label{fig:encription}
-	\end{figure}
+		Blowfish utilizza un insieme di operazioni come sostituzioni e permutazioni,
+		gestite attraverso S-box per trasformare il testo in chiaro in
+		testo cifrato. Ogni blocco di dati viene elaborato in 16 round di
+		crittografia.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{encription.jpg}
+			\caption{grafico che cattura il processo di crittografia dell'algoritmo \cite{blowfish-algorithm}}
+			\label{fig:encription}
+		\end{figure}
 
 
-	\section*{Processo di Crittografia e Decrittografia}
-	il processo principale di crittografia e decrittografia di Blowfish sta tutto 
-	nella funzione \texttt{f} che utilizza le S-box per creare una funzione non
-	lineare che contribuisce alla sicurezza dell'algoritmo.
+		\section*{Processo di Crittografia e Decrittografia}
+		il processo principale di crittografia e decrittografia di Blowfish sta tutto 
+		nella funzione \texttt{f} che utilizza le S-box per creare una funzione non
+		lineare che contribuisce alla sicurezza dell'algoritmo.
 
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{F-blowfish.jpg}
-		\caption{metodo f dell'algoritmo \cite{blowfish-algorithm}}
-		\label{fig:f}
-	\end{figure}
-	% \begin{enumerate}
-	% 	\item \textbf{Generazione delle S-Box :} Queste strutture
-	% 	vengono inizializzate basandosi sulla chiave fornita dall'utente.
-	% 	\item \textbf{Crittografia:} Il testo in chiaro viene diviso in blocchi
-	% 	da 64 bit e ogni blocco viene processato attraverso le S-box
-	% 	per produrre il testo cifrato.
-	% 	\item \textbf{Decrittografia:} Avviene utilizzando la stessa chiave e
-	% 	segue un processo simile alla crittografia, ma applicato in ordine
-	% 	inverso.
-	% \end{enumerate}
-	\section*{Funzione $F$ dell'algoritmo Blowfish}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{F-blowfish.jpg}
+			\caption{metodo f dell'algoritmo \cite{blowfish-algorithm}}
+			\label{fig:f}
+		\end{figure}
+		% \begin{enumerate}
+		% 	\item \textbf{Generazione delle S-Box :} Queste strutture
+		% 	vengono inizializzate basandosi sulla chiave fornita dall'utente.
+		% 	\item \textbf{Crittografia:} Il testo in chiaro viene diviso in blocchi
+		% 	da 64 bit e ogni blocco viene processato attraverso le S-box
+		% 	per produrre il testo cifrato.
+		% 	\item \textbf{Decrittografia:} Avviene utilizzando la stessa chiave e
+		% 	segue un processo simile alla crittografia, ma applicato in ordine
+		% 	inverso.
+		% \end{enumerate}
+		\section*{Funzione $F$ dell'algoritmo Blowfish}
 
-	La funzione $F$ prende in input un valore di 32 bit $x$ e restituisce un valore
-	di 32 bit. Essa viene definita come segue:
+		La funzione $F$ prende in input un valore di 32 bit $x$ e restituisce un valore
+		di 32 bit. Essa viene definita come segue:
 
-	\[
-		F(x) = ((S_1[a] + S_2[b] \bmod 2^{32}) \oplus S_3[c]) + S_4[d] \bmod 2^{32}
-	\]
-	\begin{itemize}
-		\item $S_1, S_2, S_3, S_4$ sono le S-box dell'algoritmo.
-		\item $a$ byte più significativo di x.
-		\item $b$ = secondo byte più significativo di x
-		\item $c$ = secondo byte meno significativo di x
-		\item $d$ = byte meno significativo di x
-		
-	\end{itemize}
-	
-	\begin{lstlisting}[style=pseudocode]
-		function F(x):
-			result = ((S1[a] + S2[b] mod 2^32) xor S3[c]) + S4[d] mod 2^32
+		\[
+			F(x) = ((S_1[a] + S_2[b] \bmod 2^{32}) \oplus S_3[c]) + S_4[d] \bmod 2^{32}
+		\]
+		\begin{itemize}
+			\item $S_1, S_2, S_3, S_4$ sono le S-box dell'algoritmo.
+			\item $a$ byte più significativo di x.
+			\item $b$ = secondo byte più significativo di x
+			\item $c$ = secondo byte meno significativo di x
+			\item $d$ = byte meno significativo di x
 			
-			return result
-	\end{lstlisting}
-	\section*{conclusioni sul funzionamento di Blowfish}
-	in pratica l'algoritmo di crittografia Blowfish si differenzia
-	principalmente dal DES visto a lezione per la sua chiave variabile fino a
-	448 bit. \cite{blfh-lenth-key}
-
-	\section*{L'obsolescenza di Blowfish nella prima versione di
-	\textit{Password Safe}}
-
+		\end{itemize}
 		
-		Uno dei principali punti deboli di Blowfish risiede nella sua
-		progettazione con una rete di Feistel di 16 round descritta nei
-		paragrafi precedenti. Sebbene non vi siano attacchi pratici noti che
-		possano rompere Blowfish con meno di 16 round, la struttura fissa e il
-		numero limitato di round non garantiscono la stessa sicurezza di
-		algoritmi più moderni come l'AES (Advanced Encryption Standard), che
-		offre una configurazione più robusta e una gestione più sicura delle
-		chiavi. Inoltre, la progettazione di Blowfish non è ottimizzata per le
-		implementazioni hardware moderne, risultando vulnerabile a tecniche come
-		gli attacchi \textit{time-memory trade-off} (TMTO) \footnote{Per
-		maggiori informazioni sugli attacchi TMTO, si può consultare il seguente
-		link:
-		\url{https://en.wikipedia.org/wiki/Time/Memory/Data_Tradeoff_attack}} e
-		l'utilizzo di tabelle precomputate.
+		\begin{lstlisting}[style=pseudocode]
+			function F(x):
+				result = ((S1[a] + S2[b] mod 2^32) xor S3[c]) + S4[d] mod 2^32
+				
+				return result
+		\end{lstlisting}
+		\section*{conclusioni sul funzionamento di Blowfish}
+		in pratica l'algoritmo di crittografia Blowfish si differenzia
+		principalmente dal DES visto a lezione per la sua chiave variabile fino a
+		448 bit. \cite{blfh-lenth-key}
 
-		Con il tempo, la crittografia è diventata un campo in continua
-		evoluzione, \par con attacchi sempre più sofisticati come quelli
-		differenziali e lineari. Mentre Blowfish non è stato completamente
-		compromesso da tali attacchi, la sua mancanza di aggiornamenti e
-		adattamenti alle nuove minacce lo rende meno preferibile rispetto ad
-		altri algoritmi che hanno subito una revisione continua e miglioramenti.\\
-
-		Un'altra considerazione critica riguarda la derivazione\par delle chiavi. La
-		prima versione di \textit{Password Safe} potrebbe non aver implementato
-		meccanismi di derivazione delle chiavi robusti, come PBKDF2, bcrypt o
-		Argon2, che sono progettati per resistere agli attacchi a forza bruta
-		implementando salting e iterazioni multiple. Questo rende
-		particolarmente problematico l'uso di Blowfish in contesti moderni, dove
-		la sicurezza a lungo termine è essenziale.\\\\
-		Inoltre, il supporto per chiavi di lunghezza fino a 448 bit, sebbene
-		teoricamente sufficiente, non offre le stesse garanzie di sicurezza di
-		AES con chiavi di lunghezza 256 bit, che è considerato lo standard di
-		sicurezza per molte applicazioni critiche. La differenza non è solo
-		nella lunghezza delle chiavi, ma anche nella resistenza agli attacchi,
-		nella velocità di cifratura e nella versatilità in diversi ambienti
-		hardware.e l'utilizzo di tabelle precomputate.\\\\
-		Un'altra considerazione critica riguarda la derivazione delle chiavi. La prima
-		versione di \textit{Password Safe} potrebbe non aver implementato meccanismi di
-		derivazione delle chiavi robusti, come PBKDF2, bcrypt o Argon2, che sono
-		progettati per resistere agli attacchi a forza bruta implementando salting e
-		iterazioni multiple. Questo rende particolarmente problematico l'uso di Blowfish
-		in contesti moderni, dove la sicurezza a lungo termine è essenziale.\\
-		Inoltre, il supporto per chiavi di lunghezza fino a 448 bit, sebbene
-		teoricamente sufficiente, non offre le stesse garanzie di sicurezza di AES con
-		chiavi di lunghezza 256 bit, che è considerato lo standard di sicurezza per
-		molte applicazioni critiche. La differenza non è solo nella lunghezza delle
-		chiavi, ma anche nella resistenza agli attacchi, nella velocità di cifratura e
-		nella versatilità in diversi ambienti hardware.
-
-		\chapter{Bitwarden}
+		\section*{L'obsolescenza di Blowfish nella prima versione di
+		\textit{Password Safe}}
+			Uno dei principali punti deboli di Blowfish risiede nella sua
+			progettazione con una rete di Feistel di 16 round descritta nei
+			paragrafi precedenti. Sebbene non vi siano attacchi pratici noti che
+			possano rompere Blowfish con meno di 16 round, la struttura fissa e il
+			numero limitato di round non garantiscono la stessa sicurezza di
+			algoritmi più moderni come l'AES (Advanced Encryption Standard), che
+			offre una configurazione più robusta e una gestione più sicura delle
+			chiavi. Inoltre, la progettazione di Blowfish non è ottimizzata per le
+			implementazioni hardware moderne, risultando vulnerabile a tecniche come
+			gli attacchi \textit{time-memory trade-off} (TMTO) \footnote{Per
+			maggiori informazioni sugli attacchi TMTO, si può consultare il seguente
+			\href{https://en.wikipedia.org/wiki/Time/Memory/Data_Tradeoff_attack}{link}} e
+			l'utilizzo di tabelle precomputate.\\ 
+			Con il tempo, la crittografia è diventata un campo in continua 
+			evoluzione, con attacchi sempre più sofisticati come quelli
+			differenziali e lineari. Mentre Blowfish non è stato completamente
+			compromesso da tali attacchi, la sua mancanza di aggiornamenti e
+			adattamenti alle nuove minacce lo rende meno preferibile rispetto ad
+			altri algoritmi che hanno subito una revisione continua e miglioramenti.\\\\
+			Inoltre, il supporto per chiavi di lunghezza fino a 448 bit, sebbene
+			teoricamente sufficiente, non offre le stesse garanzie di sicurezza di
+			AES con chiavi di lunghezza 256 bit, che è considerato lo standard di
+			sicurezza per molte applicazioni critiche. La differenza non è solo
+			nella lunghezza delle chiavi, ma anche nella resistenza agli attacchi,
+			nella velocità di cifratura e nella versatilità in diversi ambienti
+			hardware.e l'utilizzo di tabelle precomputate.\\\\
+			Un'altra considerazione critica riguarda la derivazione delle chiavi. La prima
+			versione di \textit{Password Safe} potrebbe non aver implementato meccanismi di
+			derivazione delle chiavi robusti, come PBKDF2, bcrypt o Argon2, che sono
+			progettati per resistere agli attacchi a forza bruta implementando salting e
+			iterazioni multiple. Questo rende particolarmente problematico l'uso di Blowfish
+			in contesti moderni, dove la sicurezza a lungo termine è essenziale.\\
+			\section*{implementazione completa di Blowfish}
+			utilizzando la funzione \texttt{F} e le S-box, possiamo scrivere un
+			pseudocodice che rappresenta l'intero processo di crittografia e
+			decrittografia di Blowfish.
+			\begin{lstlisting}[style=pseudocode]
+				function encrypt_block(block, key):
+					initialize_S_boxes(key)
+					left = block[0:32]
+					right = block[32:64]
+					for i = 1 to 16:
+						temp = left
+						left = right
+						right = temp xor F(right) xor P[i]
+					temp = left
+					left = right
+					right = temp
+					return left || right
+			\end{lstlisting}
+			dove \texttt{P} è un array di 18 elementi che contiene i valori delle chiavi
+			derivate dalla chiave principale dell'utente.\\
+	\chapter{Bitwarden}
 		\section{Introduzione}
-		\sloppy Bitwarden è un password manager open source che offre una soluzione sicura
-		per memorizzare e gestire le password. È disponibile su diverse piattaforme,
+		Bitwarden è un password manager open source che offre una soluzione sicura
+		per memorizzare e gestire le password.\\ È disponibile su diverse piattaforme,
 		tra cui desktop, web, mobile e browser. Bitwarden offre funzionalità di
 		sincronizzazione, condivisione e generazione di password, nonché un'interfaccia
 		intuitiva e facile da usare.\\
@@ -322,9 +323,8 @@
 		\end{figure}
 
 		\section{missione del progetto}
-		Bitwarden è un progetto open source che si pone l'obiettivo di \\
-		fornire
-		una soluzione sicura e affidabile per la gestione delle password. La
+		Bitwarden si pone l'obiettivo di fornire
+		una soluzione sicura e affidabile per la gestione delle password.\\ La
 		missione di Bitwarden è quella di proteggere la privacy e la sicurezza
 		degli utenti, offrendo un servizio gratuito e open source che garantisce
 		la riservatezza dei dati e la sicurezza delle informazioni personali.
@@ -339,7 +339,7 @@
 		a cui vogliamo rispondere con questa ricerca è: come un software moderno
 		opera in un mondo informatico multi device garantendo la massima sicurezza
 		quindi sia in locale ma anche in cloud?
-		\chapter{Registrazione di un utente su Bitwarden}
+	\chapter{Registrazione di un utente su Bitwarden}
 
 		Il processo di hashing della master password in un sistema di gestione
 		delle password come Bitwarden segue diversi step che servono a generare 
@@ -348,7 +348,7 @@
 		nemmeno al server storage di Bitwarden.\cite{login-encryption}\\
 		Le fasi più critiche e fondamentali verranno prese in esame inseguito.
 		\section{generazione della Master Key}
-		\sloppy
+		
 		La master password dell'utente viene utilizzata per generare una chiave
 		segreta, chiamata \textit{master key}, che verrà utilizzata per cifrare
 		e decifrare i dati memorizzati. La master key viene derivata dalla
@@ -364,67 +364,67 @@
 				return master_key
 		\end{lstlisting}
 		\subsection{la funzione PBKDF2}
-		PBKDF2 (Password-Based Key Derivation Function 2) è un meccanismo di
-		derivazione di chiavi basato su password ampiamente utilizzato per
-		aumentare la sicurezza delle password memorizzate. Il processo inizia
-		con l'aggiunta di un "sale", tipicamente una stringa casuale, alla
-		password dell'utente. Questo aiuta a proteggere contro gli attacchi di
-		dizionario e rainbow table, rendendo ogni hash unico anche se la
-		password originale è comune. Successivamente, il valore combinato di
-		password e sale viene passato attraverso un algoritmo di hash
-		crittografico, in questo caso \textit{HMAC-SHA-256}. HMAC sta per Hash-based
-		Message Authentication Code, che è un tipo di funzione di hash che
-		fornisce sia l'integrità dei dati che l'autenticazione del messaggio.
-		SHA-256 è parte della famiglia di algoritmi Secure Hash Algorithm e
-		produce un hash di lunghezza fissa di 256 bit.\cite{PBKDF2}\\\\
-		Dopo il primo hashing, il valore ottenuto viene nuovamente salato e hashato
-		molteplici volte. Il numero di iterazioni, \textit{streaching-function}\cite{PBKDF2-streaching-function}, è
-		configurabile e serve a rendere il processo di derivazione della chiave
-		intenzionalmente lento. Questo rallentamento è critico per la sicurezza, poiché
-		rende gli attacchi di forza bruta e di ricerca esaustiva molto più dispendiosi
-		in termini di tempo e risorse computazionali. Con ogni iterazione, l'hash
-		diventa più resistente agli attacchi, aumentando così la sicurezza della chiave
-		derivata.\\\\
-		La chiave finale ottenuta dopo l'ultima iterazione è la chiave principale, che
-		non è altro che un altro hash che sarà utilizzato per ulteriori operazioni
-		crittografiche, come l'hash della password principale. Quest'ultimo è il valore
-		che viene effettivamente utilizzato per verificare l'identità dell'utente
-		durante il processo di autenticazione. Ogni volta che l'utente inserisce la sua
-		password, il sistema ripete il processo di derivazione della chiave e confronta
-		l'hash risultante con quello memorizzato. Se corrispondono, l'accesso è
-		concesso.
-		\begin{lstlisting}[style=pseudocode]
-			function PBKDF2(password, salt, iterations, key_length):
-				key = password
-				for i = 1 to iterations:
-					key = HMAC-SHA256(key, salt)
-				return key[0:key_length]
-		\end{lstlisting}
+			PBKDF2 (Password-Based Key Derivation Function 2) è un meccanismo di
+			derivazione di chiavi basato su password ampiamente utilizzato per
+			aumentare la sicurezza delle password memorizzate. Il processo inizia
+			con l'aggiunta di un "sale", tipicamente una stringa casuale, alla
+			password dell'utente. Questo aiuta a proteggere contro gli attacchi di
+			dizionario e rainbow table, rendendo ogni hash unico anche se la
+			password originale è comune. Successivamente, il valore combinato di
+			password e sale viene passato attraverso un algoritmo di hash
+			crittografico, in questo caso \textit{HMAC-SHA-256}. HMAC sta per Hash-based
+			Message Authentication Code, che è un tipo di funzione di hash che
+			fornisce sia l'integrità dei dati che l'autenticazione del messaggio.
+			SHA-256 è parte della famiglia di algoritmi Secure Hash Algorithm e
+			produce un hash di lunghezza fissa di 256 bit.\cite{PBKDF2}\\\\
+			Dopo il primo hashing, il valore ottenuto viene nuovamente salato e hashato
+			molteplici volte. Il numero di iterazioni, \textit{streaching-function}\cite{PBKDF2-streaching-function}, è
+			configurabile e serve a rendere il processo di derivazione della chiave
+			intenzionalmente lento. Questo rallentamento è critico per la sicurezza, poiché
+			rende gli attacchi di forza bruta e di ricerca esaustiva molto più dispendiosi
+			in termini di tempo e risorse computazionali. Con ogni iterazione, l'hash
+			diventa più resistente agli attacchi, aumentando così la sicurezza della chiave
+			derivata.\\\\
+			La chiave finale ottenuta dopo l'ultima iterazione è la chiave principale, che
+			non è altro che un altro hash che sarà utilizzato per ulteriori operazioni
+			crittografiche, come l'hash della password principale. Quest'ultimo è il valore
+			che viene effettivamente utilizzato per verificare l'identità dell'utente
+			durante il processo di autenticazione. Ogni volta che l'utente inserisce la sua
+			password, il sistema ripete il processo di derivazione della chiave e confronta
+			l'hash risultante con quello memorizzato. Se corrispondono, l'accesso è
+			concesso.
+			\begin{lstlisting}[style=pseudocode]
+				function PBKDF2(password, salt, iterations, key_length):
+					key = password
+					for i = 1 to iterations:
+						key = HMAC-SHA256(key, salt)
+					return key[0:key_length]
+			\end{lstlisting}
 		\subsection{HMAC-SHA-256}
-		mentre a lezione abbiamo studiato e visto il funzionamento di SHA-256, mi sento 
-		di approfondire il funzionamento di HMAC-SHA-256.\\
-		HMAC sta per Hash-based Message Authentication Code, in questo caso specifico
-		la funzione di hash scelta è quella vista a lezione, ora vediamo come la opera 
-		per rendere sicura l'informazione.\cite{HMAC}
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.8\textwidth]{HMAC-structure.png}
-			\caption{funzionamento di HMAC-SHA-256}
-			\label{fig:hmac-sha256}
-		\end{figure}
-		\begin{enumerate}
-			\item Aggiungere zeri all'inizio di K per creare una stringa di bit $b$
-			chiamata $K^+$.
-			\item Fare lo XOR tra $K^+$ e \textit{ipad} per produrre il blocco di bit
-			$b$ $S_i$.
-			\item Aggiungere $M$ a $S_i$.
-			\item Applicare l'algoritmo di hash $H$ al flusso generato nel passaggio 3.
-			\item Fare lo XOR tra $K^+$ e \textit{opad} per produrre il blocco di bit
-			$b$ $S_0$.
-			\item Aggiungere il risultato dell'hash del passaggio 4 a $S_0$.
-			\item Applicare l'algoritmo di hash $H$ al flusso generato nel passaggio 6 e
-			produrre il risultato finale.
-		\end{enumerate}
+			mentre a lezione abbiamo studiato e visto il funzionamento di SHA-256, mi sento 
+			di approfondire il funzionamento di HMAC-SHA-256.\\
+			HMAC sta per Hash-based Message Authentication Code, in questo caso specifico
+			la funzione di hash scelta è quella vista a lezione, ora vediamo come la opera 
+			per rendere sicura l'informazione.\cite{HMAC}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{HMAC-structure.png}
+				\caption{funzionamento di HMAC-SHA-256}
+				\label{fig:hmac-sha256}
+			\end{figure}
+			\begin{enumerate}
+				\item Aggiungere zeri all'inizio di K per creare una stringa di bit $b$
+				chiamata $K^+$.
+				\item Fare lo XOR tra $K^+$ e \textit{ipad} per produrre il blocco di bit
+				$b$ $S_i$.
+				\item Aggiungere $M$ a $S_i$.
+				\item Applicare l'algoritmo di hash $H$ al flusso generato nel passaggio 3.
+				\item Fare lo XOR tra $K^+$ e \textit{opad} per produrre il blocco di bit
+				$b$ $S_0$.
+				\item Aggiungere il risultato dell'hash del passaggio 4 a $S_0$.
+				\item Applicare l'algoritmo di hash $H$ al flusso generato nel passaggio 6 e
+				produrre il risultato finale.
+			\end{enumerate}
 
 		\section{Stretched Master Key}
 		La master key risultante viene
@@ -455,7 +455,7 @@
 		\textbf{Procedura}: Si utilizza una funzione HMAC con un hash
 		crittografico (ad esempio, SHA-256). Il sale (`salt`) è un valore
 		opzionale; se non fornito, si usa una stringa di zeri della lunghezza
-		dell'hash.
+		dell'hash\cite{HMAC-expand}.
 
 		\[
 		\text{PRK} = \text{HMAC}_\text{hash}(\text{salt}, \text{IKM})
@@ -467,7 +467,7 @@
 		Material, OKM) dalla PRK.\\
 		\textbf{Procedura}: Utilizzando nuovamente HMAC, la PRK è impiegata come
 		chiave per l'HMAC e un contesto (`info`) come input. L'output è una
-		concatenazione di più blocchi HMAC.
+		concatenazione di più blocchi HMAC. \cite{HMAC-expand}
 
 		\[
 		T(0) = \emptyset
@@ -511,42 +511,6 @@
 			di memoria.
 		\end{itemize}
 
-
-
-
-		\subsection*{1. Generazione del Salt}
-		Un valore casuale, chiamato \textit{salt}, viene generato per ogni utente:
-		\[
-		\text{salt} = \text{random\_bytes}(n)
-		\]
-		dove \( n \) è la lunghezza del salt in byte.
-
-		\subsection*{2. Concatenazione della Password e del Salt}
-		La master password dell'utente \( P \) viene concatenata con il salt:
-		\[
-		\text{input} = P \| \text{salt}
-		\]
-		dove \( \| \) rappresenta l'operazione di concatenazione.
-
-		\subsection*{3. Hashing}
-		L'input concatenato viene passato attraverso una funzione di hashing sicura, come SHA-256:
-		\[
-		\text{hash} = \text{SHA-256}(\text{input})
-		\]
-
-		\subsection*{4. Iterazione (PBKDF2)}
-		Per aumentare la sicurezza, l'hash viene iterato utilizzando PBKDF2 (Password-Based Key Derivation Function 2):
-		\[
-		\text{derived\_key} = \text{PBKDF2}(\text{hash}, \text{salt}, \text{iterations}, \text{key\_length})
-		\]
-		dove \textit{iterations} è il numero di iterazioni e \textit{key\_length} è la lunghezza della chiave derivata.
-
-		\subsection*{5. Memorizzazione}
-		Il risultato finale, \textit{derived\_key}, insieme al salt, viene memorizzato nel database:
-		\[
-		\text{stored\_value} = \{\text{salt}, \text{derived\_key}\}
-		\]
-
 		Questo processo garantisce che anche se due utenti hanno la stessa master password, i valori hash memorizzati saranno diversi grazie all'uso del salt. Inoltre, l'uso di PBKDF2 rende l'attacco di forza bruta molto più difficile.
 		ecco lo pseudocode completo dell'operazione:
 		\begin{lstlisting}[style=pseudocode]
@@ -558,16 +522,219 @@
 				
 				return stored_value
 		\end{lstlisting}
-		\subsection*{PBKDF2 o Argon2?}
+		\subsection{PBKDF2 o Argon2?}
 		Dalla versione 2023.2.0 di Bitwarden, è stata inserita la possibilità
 		di scegliere tra PBKDF2 e Argon2 come algoritmo di derivazione delle
 		chiavi per l'hashing della master password. Argon2 è un algoritmo di
 		derivazione delle chiavi. Vincitore del concorso Password Hashing
-		Competition (PHC) nel 2015, Argon2 è considerato uno degli algoritmi
+		Competition (PHC) nel 2015. Vediamo come si comporta e che differenze 
+		ha rispetto a PBKDF2.\\
+		La differenza fra PBKDF2 e Argon2 sta nel fatto che Argon2 sfrutta
+		una memoria più grande e un tempo di esecuzione più lungo, grazie alla
+		sua funzione principale di stretching. 
+		\subsection*{fase di espanzione di Argon2}
+		una volta presa una stringa da criptare, Argon2 si comporta nel seguente modo:
+		\begin{enumerate}
+			\item Viene generato un blocco di memoria di dimensione fissa, chiamato
+			\textit{lanes}, che contiene il materiale di chiave iniziale (IKM).
+			\item Il blocco di memoria viene diviso in segmenti di dimensione fissa,
+			chiamati \textit{lanes}.
+			\item Ogni segmento viene elaborato in parallelo, utilizzando una funzione
+			di hash crittografico (ad esempio, SHA-256).
+			\item I risultati di ogni segmento vengono combinati per produrre un'unica
+			chiave di output.
+		\end{enumerate}
+		\section*{Funzione di compressione G e funzione di round P di Blake2b}
 
-	\newpage
-	\bibliography{refs}
-	\renewcommand{\bibsection}{}
-	\chapter*{Riferimenti bibliografici}
+			La funzione di compressione \textbf{G} è costruita sulla funzione di
+			round \textbf{P} di \textbf{Blake2b}. La funzione \textbf{P} opera su un
+			input di 128 byte, che può essere visto come 8 registri di 16 byte:\cite{argon2}
+			\[
+			P(A_0, A_1, \dots, A_7) = (B_0, B_1, \dots, B_7).
+			\]
+			La funzione di compressione \textbf{G(X, Y)} opera su due blocchi di
+			1024 byte, \textbf{X} e \textbf{Y}. Inizialmente, si calcola:
+			\[
+			R = X \oplus Y.
+			\]
+
+			Quindi, \textbf{R} è visto come una matrice 88 di registri di 16 byte.
+			La funzione \textbf{P} viene applicata prima per riga e poi per colonna
+			per ottenere \textbf{Z}:
+
+			\[
+			(Q_0, Q_1, \dots, Q_7) \leftarrow P(R_0, R_1, \dots, R_7);
+			\]
+
+			\[
+			(Q_8, Q_9, \dots, Q_{15}) \leftarrow P(R_8, R_9, \dots, R_{15});
+			\]
+
+			\[
+			\ldots
+			\]
+
+			\[
+			(Q_{56}, Q_{57}, \dots, Q_{63}) \leftarrow P(R_{56}, R_{57}, \dots, R_{63});
+			\]
+
+			\[
+			(Z_0, Z_8, Z_{16}, \dots, Z_{56}) \leftarrow P(Q_0, Q_8, Q_{16}, \dots, Q_{56});
+			\]
+
+			\[
+			(Z_1, Z_9, Z_{17}, \dots, Z_{57}) \leftarrow P(Q_1, Q_9, Q_{17}, \dots, Q_{57});
+			\]
+
+			\[
+			\ldots
+			\]
+
+			\[
+			(Z_7, Z_{15}, Z_{23}, \dots, Z_{63}) \leftarrow P(Q_7, Q_{15}, Q_{23}, \dots, Q_{63}).
+			\]
+
+			Infine, \textbf{G} produce l'output \textbf{Z $\oplus$ R}:
+
+			\[
+			G : (X, Y) \rightarrow R = X \oplus Y \rightarrow P \rightarrow Q \rightarrow P \rightarrow Z \rightarrow Z \oplus R.
+			\]
+			
+			\section*{Perché "Decompressione"?}
+			
+			Il termine "decompressione" si riferisce al processo attraverso il
+			quale un'informazione sintetizzata o combinata (come nel caso di \(
+			R = X \oplus Y \)) viene espansa in una rappresentazione più
+			articolata attraverso vari passaggi di trasformazione. In
+			particolare, la funzione \( P \) applicata row-wise e column-wise
+			agisce in modo da rimescolare e ridistribuire l'informazione
+			contenuta in \( R \), aumentando così la sua entropia e rendendo
+			l'output meno riconoscibile rispetto agli input originali.
+			
+			Questo processo di "decompressione" assicura che, sebbene il
+			risultato finale (output di \( G \)) sia complesso e diffuso, esso
+			conserva una relazione matematica precisa con i dati di input.
+		
+			\section{utilizzo delle due Master Key}
+			Insomma, tutta questa fatica per avere due chiavi fortemente sicure,
+			ma a cosa servono?\\
+			Possiamo dire che siamo a questo punto dello schema crittografico di Bitwarden:
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\textwidth]{masterKeyGenerated.png}
+				\caption{fasi di generazione delle chiavi}
+				\label{fig:masterKey}
+			\end{figure}
+			La Master Password quindi viene solo utilizzata per generare una complessa
+			"danza" crittografica. In questo modo non viene mai salvata in chiaro 
+			se non nell'istante in cui il client la inserisce.\\
+			Ora vediamo come Bitwarden ha deciso come utilizzare queste due chiavi
+			per poter riconoscere l'utente garantendone la massima sicurezza.
+			\subsection{Master Password Hash}
+			 Viene generata utilizzando un algoritmo di derivazione della chiave, 
+			 abbiamo già visto come funziona PBKDF2, una volta fatto il primo accesso
+			 puoi decidere quale algoritmo utilizzare fra quelli precedentemente presentati
+			\subsection{Protected Symmetric Key}
+				generata con un algoritmo AES-256 che ora spieghiamo nel dettaglio 
+				\subsubsection{AES-256}
+				Advanced Encryption Standard (AES) è un algoritmo di crittografia a blocchi
+				simmetrico che utilizza chiavi di 128, 192 o 256 bit. È uno degli algoritmi
+				di crittografia più utilizzati al mondo, utilizzato per proteggere dati
+				sensibili in applicazioni come la crittografia dei dati, la sicurezza delle
+				connessioni Internet e la protezione delle informazioni personali.\\
+				Accetta 3 argomenti: il testo in chiaro, la chiave e il vettore di
+				inizializzazione (IV). Il testo in chiaro e la chiave devono essere della
+				stessa lunghezza, mentre l'IV è un vettore di byte pseudocasuale che viene utilizzato
+				per inizializzare lo stato interno dell'algoritmo.\\
+
+				scriviamo i punti principali del funzonamento di AES-256:
+				\begin{itemize}
+					\item \textbf{S-Box}: Utilizza una tabella di sostituzione non lineare
+					per confondere i dati durante la crittografia.
+					\item \textbf{ShiftRows}: Permuta i byte all'interno di ciascuna riga
+					della matrice di stato.
+					\item \textbf{MixColumns}: Combina i byte all'interno di ciascuna
+					colonna della matrice di stato.
+					\item \textbf{AddRoundKey}: Aggiunge la chiave di round alla matrice di
+					stato.
+				\end{itemize}
+
+			
+			
+			\chapter{accesso di Bob}
+				\textbf{Contesto}: Bob è un utente di Bitwarden e vuole accedere al suo account utilizzando la sua \textit{email} e la sua \textit{master password}.
+
+				\subsection*{Passaggi dell'accesso di Bob}
+
+				\begin{enumerate}
+					\item \textbf{Inserimento delle Credenziali}:
+					\begin{itemize}
+						\item \textit{Email}: Bob inserisce il suo indirizzo email, ad esempio, \texttt{bob@example.com}.
+						\item \textit{Master Password}: Bob inserisce la sua master password.
+					\end{itemize}
+					
+					\item \textbf{Derivazione della Master Key}:
+					\begin{itemize}
+						\item Localmente sul dispositivo di Bob, la master password viene combinata con la sua email (\texttt{bob@example.com}) come sale in un processo di derivazione della chiave utilizzando \textbf{PBKDF2} con un numero elevato di iterazioni (ad esempio, 600.000). Questo produce una chiave di 256 bit chiamata \textbf{Master Key}.
+					\end{itemize}
+
+					\item \textbf{Creazione dell'Hash della Master Password}:
+					\begin{itemize}
+						\item La Master Key viene usata per generare un hash della master password (MPH). Questo hash è derivato usando \textbf{PBKDF-SHA256} con un payload della Master Key e un \texttt{salt} derivato dalla master password. Questo hash viene inviato ai server di Bitwarden per l'autenticazione.
+					\end{itemize}
+
+					\item \textbf{Autenticazione sul Server}:
+					\begin{itemize}
+						\item I server di Bitwarden confrontano l'hash inviato con l'hash memorizzato corrispondente. Se gli hash corrispondono, l'autenticazione è considerata valida.
+					\end{itemize}
+
+					\item \textbf{Decriptazione della Protected Symmetric Key}:
+					\begin{itemize}
+						\item Sul dispositivo di Bob, la \textbf{Stretched Master Key} viene derivata dalla Master Key utilizzando l'\textbf{HKDF} (HMAC-based Extract-and-Expand Key Derivation Function).
+						\item La Stretched Master Key viene quindi utilizzata per decriptare la \textbf{Protected Symmetric Key}, che è memorizzata sul server e criptata con la Stretched Master Key. La Protected Symmetric Key decriptata fornisce accesso alla \textbf{User Symmetric Key}, che è la chiave usata per decriptare i dati del vault.
+					\end{itemize}
+
+					\item \textbf{Accesso ai Dati}:
+					\begin{itemize}
+						\item Con la User Symmetric Key, Bob può ora accedere ai dati criptati nel suo vault. Questo processo di decriptazione avviene interamente sul suo dispositivo.
+					\end{itemize}
+				\end{enumerate}
+
+				\section*{Controesempio: Accesso Fallito}
+
+				Immaginiamo che Bob, accidentalmente, inserisca una master password errata o un'email errata:
+
+				\begin{enumerate}
+					\item \textbf{Inserimento delle Credenziali Errate}:
+					\begin{itemize}
+						\item Bob inserisce una master password o un'email sbagliata.
+					\end{itemize}
+
+					\item \textbf{Derivazione della Master Key Errata}:
+					\begin{itemize}
+						\item L'errore nella master password o nell'email porta alla derivazione di una \textbf{Master Key errata}.
+					\end{itemize}
+
+					\item \textbf{Creazione di un Hash della Master Password Errato}:
+					\begin{itemize}
+						\item La Master Key errata produce un hash della master password che non corrisponde a quello memorizzato sui server di Bitwarden.
+					\end{itemize}
+
+					\item \textbf{Autenticazione Fallita}:
+					\begin{itemize}
+						\item Gli hash non corrispondono, quindi l'autenticazione fallisce. Bob non può accedere al suo account perché il server non autorizza l'accesso.
+					\end{itemize}
+
+					\item \textbf{Mancata Decriptazione}:
+					\begin{itemize}
+						\item Poiché l'autenticazione fallisce, Bob non riceve la \textbf{Protected Symmetric Key} corretta, e quindi non può decriptare i dati del suo vault. Anche se avesse ricevuto una chiave protetta, la Stretched Master Key errata non sarebbe in grado di decriptarla correttamente.
+					\end{itemize}
+				\end{enumerate}
+
+				Questo processo garantisce che solo chi conosce la master password corretta possa accedere ai dati criptati, proteggendo l'utente da accessi non autorizzati.
+
+			\bibliography{refs}
+			\renewcommand{\bibsection}{}
+			
 	
 \end{document}

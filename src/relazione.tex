@@ -53,7 +53,7 @@
     numberstyle=\tiny\color{gray},
     frame=single,
     breaklines=true,
-    tabsize=2
+	tabsize=1
 }
 
 \lstset{}
@@ -118,66 +118,78 @@
 
 	\chapter{Introduzione}
 		\section{Scopo del Documento}
-		L'idea della ricerca nasce poichè confrontandomi con amici e colleghi, ho notato
-		che molti di loro studiavano il campo della crittografia da un punto di vista
-		dei malware e dei ransomware, ma non da un punto di vista positivo. Questo
-		documento ha lo scopo di fornire una panoramica generale della crittografia e
-		delle sue applicazioni positive, con particolare attenzione ai password manager.
+		La ricerca nasce dal desiderio di esplorare il ruolo della crittografia non 
+		solo come strumento di protezione, ma anche come tecnologia essenziale per la
+		sicurezza digitale quotidiana. Mentre spesso si parla di crittografia associata 
+		a malware e ransomware, questo documento si concentra sul suo utilizzo positivo, 
+		illustrando il viaggio che compie un dato per diventare sicuro.
+		Attraverso il caso studio di un password manager come Bitwarden, esploreremo 
+		come il dato, da semplice informazione, venga trasformato, crittografato e custodito
+		in modo sicuro. L’obiettivo è fornire una visione chiara e tecnica di come i vari 
+		algoritmi e processi crittografici intervengano in questa trasformazione, 
+		garantendo protezione e resilienza contro attacchi esterni.
 		\section{L'Uso Positivo della Crittografia} 
-		La crittografia, un campo di studio che si
-		occupa della protezione delle informazioni attraverso l'uso di codici, ha un
-		ruolo fondamentale nel mondo digitale di oggi. Attraverso l'utilizzo di
-		complessi algoritmi matematici, la crittografia protegge i dati sensibili,
-		garantisce la riservatezza delle comunicazioni, assicura l'integrità dei dati e
-		favorisce un commercio elettronico sicuro. È uno strumento cruciale per
-		proteggere la nostra privacy e preservare la sicurezza dei nostri dati.
-		La crittografia	è un elemento fondamentale per la cybersecurity, capace di assicurare una
-		protezione efficace e duratura nel tempo dei sistemi e dei servizi a cui viene
-		applicata.
+		La crittografia è una scienza matematica che utilizza algoritmi per
+		proteggere dati sensibili, assicurare comunicazioni sicure e preservare
+		l’integrità delle informazioni. Nel panorama digitale odierno, il
+		“viaggio del dato” inizia con l’obiettivo di garantire riservatezza e
+		sicurezza, attraversando vari processi crittografici per diventare
+		inattaccabile.
+
+		Attraverso tecnologie come gli algoritmi di crittografia simmetrica e
+		asimmetrica, i dati vengono trasformati in modo che solo le parti
+		autorizzate possano accedervi. In particolare, la crittografia è alla
+		base di strumenti come i password manager, che consentono agli utenti di
+		custodire in sicurezza le proprie credenziali.
 		\section{concetti chiave per questa ricerca}
-			bisogna tener presente che ci sono 2 concetti che sono fondamentali 
-			su cui si basano tutti gli algoritmi di questa ricerca.\\
-			Ogni algoritmo visto nelle pagine seguenti implementa questi
-			2 concetti in modo diverso, ma il principio rimane lo stesso.
+		Per comprendere appieno il viaggio che il dato compie, è fondamentale
+		analizzare due principi su cui si basano gli algoritmi crittografici:
+		Confusione e Diffusione. Ogni fase del processo crittografico applica
+		questi concetti in modi diversi per garantire la sicurezza dei dati.
 
 			\subsection{Confusione}
-			Confusione si riferisce alla capacità di nascondere la relazione tra
-			il testo cifrato e la chiave crittografica. L'obiettivo è rendere
-			complicato per un attaccante dedurre la chiave o il testo in chiaro
-			basandosi sul testo cifrato. Questo principio si realizza attraverso
-			operazioni non lineari e sostituzioni complesse, come le tabelle
-			S-Box utilizzate in algoritmi simmetrici come AES. Queste
-			trasformazioni rendono non prevedibile la modifica del testo cifrato
-			in risposta a cambiamenti nei dati o nella chiave.
+			La confusione rappresenta la capacità di nascondere la relazione tra
+			il testo cifrato e la chiave crittografica. Questo è fondamentale
+			per rendere difficile a un attaccante dedurre il dato originale o la
+			chiave analizzando il dato cifrato. Algoritmi come DES che utilizza
+			operazioni non lineari, ad esempio le S-Box, per introdurre complessità e
+			imprevedibilità. In questo contesto, ogni trasformazione aumenta il
+			grado di protezione, rendendo il dato sempre più difficile da
+			decifrare.
 
 			\subsection{Diffusione}
-			Diffusione significa che una modifica in un singolo bit del testo in
-			chiaro dovrebbe influenzare molti bit nel testo cifrato. Questo
-			rende difficile per un attaccante capire quale parte del testo
-			cifrato corrisponde a quale parte del testo in chiaro. La diffusione
-			si ottiene tipicamente attraverso operazioni che mescolano i dati,
-			come le trasformazioni lineari e le permutazioni. Per esempio, nel
-			DES e nell'AES, operazioni come "MixColumns" e "ShiftRows"
-			diffondono i dati su più byte, incrementando così la sicurezza.
+			La diffusione, invece, garantisce che una modifica anche minima nel
+			dato in ingresso influenzi in maniera significativa il dato in
+			uscita. Questo rende complesso per un attaccante stabilire
+			corrispondenze tra il dato originale e quello cifrato. Tecniche come
+			ShiftRows e MixColumns negli algoritmi AES mescolano i dati su più
+			livelli, assicurando che ogni bit influenzi molteplici aspetti del
+			dato finale. Questo processo è cruciale per rendere la crittografia
+			resistente ad attacchi statistici.
 
 		\subsection*{Introduzione ai Password Manager} 
-		Un password manager è un sistema di
-		sicurezza informatica, un programma che permette di creare password uniche per
-		ogni singolo account, conservarle in un luogo sicuro e accedere ad esse
-		attraverso un’estensione del browser o una app, sia da un computer che da un
-		dispositivo mobile come tablet o smartphone. Questi strumenti consentono agli
-		utenti di sincronizzare le password tra vari dispositivi, e possono o meno
-		conservare le password e i dati anche sul dispositivo.
-		Il concetto principe di un password manager è quello di accedere
-		ad una password unica, detta master password, che impastata
-		rappresenta la chiave privata del mio storage di password.
+		I password manager rappresentano un esempio pratico dell’applicazione
+		della crittografia al servizio della sicurezza personale. Questi
+		strumenti permettono agli utenti di custodire in sicurezza le proprie
+		password, garantendo che solo l’utente autorizzato possa accedervi.
+		Grazie alla combinazione di una master password e tecnologie
+		crittografiche avanzate, come il PBKDF2 o l’AES, ogni dato viene
+		trasformato e custodito attraverso un viaggio crittografico altamente
+		sicuro.
 
 	\chapter{Storia} 
-		La storia dei password manager è intrinsecamente legata all'evoluzione della
-		sicurezza informatica. Le password, come metodo di autenticazione, hanno radici
-		antiche, risalenti all'antica Grecia e utilizzate per proteggere segreti
-		militari durante la Seconda Guerra Mondiale. Con l'avvento dei computer negli
-		anni '60, le password hanno iniziato a diventare parte della vita quotidiana.
+		Con l’avvento dell’informatica, il bisogno di proteggere informazioni
+		digitali ha portato alla nascita dei primi algoritmi crittografici e
+		strumenti dedicati. Tra questi, Password Safe, introdotto da Mark Thompson
+		nel 1990, ha segnato un punto di svolta nella gestione sicura delle
+		credenziali.
+
+		Password Safe utilizzava Blowfish, un algoritmo crittografico a blocchi
+		simmetrico ideato da Bruce Schneier nel 1993.
+		Siccome Mark Thompson non ha reinventato la ruota, ma ha modificato
+		l'algoritmo DES (Data Encryption Standard) per renderlo più sicuro, 
+		Penso che sia importante capire come funzionni l'algoritmo DES per
+		poi capire come blowfish lo migliori. 
 
 		Il primo password manager della storia è stato sviluppato nel 1990 da Mark
 		Thompson \cite{password-manager-hystory} e si chiama "password Safe" e 
